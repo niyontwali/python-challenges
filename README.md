@@ -367,8 +367,10 @@ newlist = [expression for item in iterable if condition == True]
 ```
 
 ### Sort Lists
-- Sort list alphabetically and numerically:  `list.sort()`. For `descending` you just add in the sort(reverse = True)
+
+- Sort list alphabetically and numerically: `list.sort()`. For `descending` you just add in the sort(reverse = True)
 - Sort list using customized functions
+
 ```python
 def myfunc(n):
   return abs(n - 50)
@@ -377,18 +379,23 @@ thislist = [100, 50, 65, 82, 23]
 thislist.sort(key = myfunc)
 print(thislist)
 ```
+
 - By default the sort() method is case sensitive, resulting in all capital letters being sorted before lower case letters. So if you want a case-insensitive sort function, use str.lower as a key function
+
 ```python
 thislist = ["banana", "Orange", "Kiwi", "cherry"]
 thislist.sort(key = str.lower)
 print(thislist)
 ```
+
 - What if you want to reverse the order of a list, regardless of the alphabet? i.e `list.reverse()`
 
 ### Copy Lists
+
 You cannot copy a list simply by typing `list2 = list1`, because: `list2` will only be a reference to `list1`, and changes made in `list1` will automatically also be made in `list2`.
 
 There are ways to make a copy, one way is to use the **built-in** List method `copy()`. Another way to make a copy is to use the built-in method `list()`.
+
 ```python
 thislist = ["apple", "banana", "cherry"]
 mylist = thislist.copy()
@@ -400,9 +407,13 @@ thislist = ["apple", "banana", "cherry"]
 mylist = list(thislist)
 print(mylist)
 ```
+
 ### Join Lists
+
 There are several ways to join, or concatenate, two or more lists in Python.
+
 1. using the + operator
+
 ```python
 list1 = ["a", "b", "c"]
 list2 = [1, 2, 3]
@@ -410,7 +421,9 @@ list2 = [1, 2, 3]
 list3 = list1 + list2
 print(list3)
 ```
+
 2. appending all the items from list2 into list1, one by one using for loop
+
 ```python
 list1 = ["a", "b" , "c"]
 list2 = [1, 2, 3]
@@ -420,13 +433,264 @@ for x in list2:
 
 print(list1)
 ```
+
 3. use the extend() method, where the purpose is to add elements from one list to another list
+
 ```python
 list1 = ["a", "b" , "c"]
 list2 = [1, 2, 3]
 
 list1.extend(list2)
 print(list1)
+```
+
+## Python Dictionaries
+
+- Dictionaries are used to store data values in key:value pairs.
+- A dictionary is a collection which is ordered\*, changeable and do not allow duplicates.
+- Dictionaries are written with curly brackets, and have keys and values:
+
+```python
+thisdict = {
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
+}
+print(thisdict)
+```
+
+### Properties of Dictionaries
+
+**Access Items:**
+
+Accessing items in a dictionary is straightforward using keys. You can also use the `get()` method to retrieve a value with a default if the key is not found.
+
+```python
+my_dict = {"key1": "value1", "key2": "value2"}
+print(my_dict["key1"])  # Output: value1
+print(my_dict.get("key3", "default_value"))  # Output: default_value
+```
+
+To get the keys of a `dict` use `keys()`
+
+```python
+x = thisdict.keys()
+```
+
+To get the values of a `dict` use values() method will return a list of all the values in the dictionary.
+
+```python
+x = thisdict.values()
+```
+
+The `items()` method will return each item in a dictionary, as tuples in a list
+
+```python
+x = thisdict.items()
+```
+
+### Check if Key Exists
+
+To determine if a specified key is present in a dictionary use the `in` keyword:
+
+```python
+thisdict = {
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
+}
+if "model" in thisdict:
+  print("Yes, 'model' is one of the keys in the thisdict dictionary")
+```
+
+**Change Items:**
+
+To change the value of a specific item in a dictionary, simply assign a new value to the corresponding key.
+
+```python
+my_dict["key1"] = "new_value"
+print(my_dict["key1"])  # Output: new_value
+```
+
+### Update Dictionary
+
+The `update()` method will update the dictionary with the items from the given argument. The argument must be a dictionary, or an iterable object with key:value pairs.
+
+```python
+thisdict = {
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
+}
+thisdict.update({"year": 2020})
+```
+
+**Add Items:**
+
+To add a new item to a dictionary, simply assign a value to a new key.
+
+```python
+my_dict["new_key"] = "new_value"
+print(my_dict["new_key"])  # Output: new_value
+```
+
+You can add an item as well using the `update()` method like this:
+
+```python
+thisdict = {
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
+}
+thisdict.update({"color": "red"})
+```
+
+**Remove Items:**
+
+There are several methods to remove items from a dictionary:
+
+1. The pop() method removes the item with the specified key name:
+
+```python
+thisdict = {
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
+}
+thisdict.pop("model")
+print(thisdict)
+```
+
+2. The popitem() method removes the last inserted item (in versions before 3.7, a random item is removed instead):
+
+```python
+thisdict = {
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
+}
+thisdict.popitem()
+print(thisdict)
+```
+
+3. The del keyword removes the item with the specified key name:
+
+```python
+thisdict = {
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
+}
+del thisdict["model"]
+print(thisdict)
+```
+
+4. The clear() method empties the dictionary:
+
+```python
+thisdict = {
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
+}
+thisdict.clear()
+print(thisdict)
+```
+
+**Length of Dict:**
+
+To get the number of items in a dictionary, use the `len()` function.
+
+```python
+my_dict = {"key1": "value1", "key2": "value2"}
+print(len(my_dict))  # Output: 2
+```
+
+**Loop:**
+
+You can loop through a dictionary using its keys, values, or key-value pairs using `for` loops.
+
+```python
+for key in my_dict:
+    print(key)  # Output: key1, key2
+
+for value in my_dict.values():
+    print(value)  # Output: value1, value2
+
+for key, value in my_dict.items():
+    print(key, value)  # Output: key1 value1, key2 value2
+```
+
+**Copy:**
+
+To create a copy of a dictionary, use the `copy()` method.
+
+```python
+new_dict = my_dict.copy()
+print(new_dict)  # Output: {"key1": "value1", "key2": "value2"}
+```
+
+You can as well use `dict()` function:
+
+```python
+thisdict = {
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
+}
+mydict = dict(thisdict)
+print(mydict)
+```
+
+**Dictionary Methods:**
+
+Python dictionaries provide various methods for common operations such as getting keys, values, items, and more.
+
+```python
+print(my_dict.keys())  # Output: dict_keys(['key1', 'key2'])
+print(my_dict.values())  # Output: dict_values(['value1', 'value2'])
+print(my_dict.items())  # Output: dict_items([('key1', 'value1'), ('key2', 'value2')])
+```
+
+**NOTE:** As of Python version 3.7, dictionaries are ordered. In Python 3.6 and earlier, dictionaries are unordered.
+
+### Nested Dictionaries
+
+Example
+
+```python
+myfamily = {
+  "child1" : {
+    "name" : "Emil",
+    "year" : 2004
+  },
+  "child2" : {
+    "name" : "Tobias",
+    "year" : 2007
+  },
+  "child3" : {
+    "name" : "Linus",
+    "year" : 2011
+  }
+}
+```
+
+Now how do we access items: _Print the name of child 2_:
+
+```python
+print(myfamily["child2"]["name"])
+```
+
+#### Loop Through Nested Dictionaries
+
+You can loop through a dictionary by using the `items()` method like this:
+
+```python
+for x, obj in myfamily.items():
+  print(x)
+
+  for y in obj:
+    print(y + ':', obj[y])
 ```
 
 ## Python Operators
@@ -516,7 +780,9 @@ The following list describes the operator precedence in Python, starting from th
 This order defines how expressions containing multiple operators are evaluated in Python. Operators listed earlier have higher precedence and are evaluated before operators lower in the list.
 
 ## Python `if statement`
+
 Python Conditions and If statements
+
 - Equals: a == b
 - Not Equals: a != b
 - Less than: a < b
@@ -547,6 +813,7 @@ elif a == b:
 ```
 
 Example 3:
+
 ```python
 a = 200
 b = 33
@@ -557,7 +824,9 @@ elif a == b:
 else:
   print("a is greater than b")
 ```
+
 ### Short Hand If ... Else
+
 ```python
 a = 2
 b = 330
@@ -571,10 +840,13 @@ print("A") if a > b else print("=") if a == b else print("B")
 ```
 
 ### The pass Statement
+
 `if` statements cannot be empty, but if you for some reason have an `if` statement with no content, put in the `pass` statement to avoid getting an error.
 
 ## Python Loops
+
 ### While Loops
+
 With the `while` loop we can execute a set of statements as long as a condition is true.
 
 ```python
@@ -583,18 +855,22 @@ while i < 6:
   print(i)
   i += 1
 ```
+
 #### The break Statement
+
 With the break statement we can stop the loop even if the while condition is true:
 
 ```python
 i = 1
 while i < 6:
   print(i)
-  if i == 3: # Exit the loop when i is 3 
+  if i == 3: # Exit the loop when i is 3
     break
   i += 1
 ```
+
 #### The continue Statement
+
 With the continue statement we can stop the current iteration, and continue with the next:
 
 ```python
@@ -605,7 +881,9 @@ while i < 6:
     continue
   print(i)
 ```
+
 #### The else Statement
+
 With the `else` statement we can run a block of code once when the condition no longer is true:
 
 ```python
@@ -615,4 +893,266 @@ while i < 6:
   i += 1
 else:
   print("i is no longer less than 6")
+```
+
+### For Loops
+
+A `for` loop is used for iterating over a sequence (that is either a list, a tuple, a dictionary, a set, or a string).
+
+This is less like the `for` keyword in other programming languages, and works more like an iterator method as found in other object-orientated programming languages.
+
+With the `for` loop we can execute a set of statements, once for each item in a list, tuple, set etc
+
+Example
+
+```python
+fruits = ["apple", "banana", "cherry"]
+for x in fruits:
+  print(x)
+```
+
+**Note:** The for loop does not require an indexing variable to set beforehand.
+
+#### Else in For Loop
+
+The else keyword in a for loop specifies a block of code to be executed when the loop is finished:
+
+```python
+for x in range(6):
+  print(x)
+else:
+  print("Finally finished!")
+```
+
+**Note:** The else block will NOT be executed if the loop is stopped by a break statement. E.g
+
+```python
+for x in range(6):
+  if x == 3: break
+  print(x)
+else:
+  print("Finally finished!")
+```
+
+#### Nested Loops
+
+A nested loop is a loop inside a loop.
+
+The "inner loop" will be executed one time for each iteration of the "outer loop":
+
+```python
+adj = ["red", "big", "tasty"]
+fruits = ["apple", "banana", "cherry"]
+
+for x in adj:
+  for y in fruits:
+    print(x, y)
+```
+
+## Python Functions
+
+- A function is a block of code which only runs when it is called.
+- In Python a function is defined using the `def` keyword
+  e.g
+
+```python
+def my_function():
+  print("Hello from a function")
+
+my_function()
+```
+
+### Arguments
+
+Information can be passed into functions as arguments.
+
+Arguments are specified after the function name, inside the parentheses. You can add as many arguments as you want, just separate them with a comma.
+
+### Do we say Parameters or Arguments?
+
+From a function's perspective:
+
+A `parameter` is the variable listed inside the parentheses in the function definition.
+
+An `argument` is the value that is sent to the function when it is called.
+
+### Arbitrary Arguments, \*args
+
+If you do not know how many arguments that will be passed into your function, add a \* before the parameter name in the function definition.
+
+This way the function will receive a tuple of arguments, and can access the items accordingly:
+
+```python
+def my_function(*kids):
+  print("The youngest child is " + kids[2]) #Output: The youngest child is Linus
+
+my_function("Emil", "Tobias", "Linus")
+```
+
+**Note:** Arbitrary Arguments are often shortened to \*args in Python documentations.
+
+### Keyword Arguments
+
+You can also send arguments with the key = value syntax.
+
+This way the order of the arguments does not matter.
+
+```python
+def my_function(child3, child2, child1):
+  print("The youngest child is " + child3)
+
+my_function(child1 = "Emil", child2 = "Tobias", child3 = "Linus")
+```
+
+### Arbitrary Keyword Arguments, \*\*kwargs
+
+If you do not know how many keyword arguments that will be passed into your function, add two asterisk: \*\* before the parameter name in the function definition.
+
+This way the function will receive a dictionary of arguments, and can access the items accordingly:
+
+```python
+def my_function(**kid):
+  print("His last name is " + kid["lname"]) # Output: His last name is Refsnes
+
+my_function(fname = "Tobias", lname = "Refsnes")
+```
+
+### Default Parameter Value
+
+The following example shows how to use a default parameter value. If we call the function without argument, it uses the default value
+
+```python
+def my_function(country = "Norway"):
+  print("I am from " + country)
+
+my_function("Sweden") # I am from Sweden
+my_function("India") # I am from India
+my_function() # I am from Norway
+my_function("Brazil") # I am from Brazil
+```
+
+### Passing a List as an Argument
+
+You can send any data types of argument to a function (string, number, list, dictionary etc.), and it will be treated as the same data type inside the function. E.g. if you send a List as an argument, it will still be a List when it reaches the function:
+
+```python
+def my_function(food):
+  for x in food:
+    print(x)
+
+fruits = ["apple", "banana", "cherry"]
+
+my_function(fruits)
+```
+
+### `Return` Values and the `pass` Statement
+
+- To let a function return a value, use the `return` statement
+- `function` definitions cannot be empty, but if you for some reason have a `function` definition with no content, put in the `pass` statement to avoid getting an error.
+
+### Positional-Only Arguments
+
+You can specify that a function can have ONLY _positional arguments_, or ONLY _keyword arguments_. To specify that a function can have only positional arguments, add `, /` after the arguments:
+
+```python
+def my_function(x, /):
+# Without the , / you are actually allowed to use keyword arguments even if the function expects positional arguments:
+  print(x)
+
+my_function(3)
+```
+
+### Keyword-Only Arguments
+
+To specify that a function can have only _keyword arguments_, add `*`, before the arguments:
+
+```python
+def my_function(*, x):
+  print(x)
+
+my_function(x = 3)
+```
+
+### Combine Positional-Only and Keyword-Only
+
+You can combine the two argument types in the same function. Any argument before the` / ,` are _positional-only_, and any argument after the `*,` are _keyword-only_.
+
+```python
+def my_function(a, b, /, *, c, d):
+  print(a + b + c + d)
+
+my_function(5, 6, c = 7, d = 8)
+```
+
+### Recursion
+
+Python also accepts function recursion, which means a defined function can call itself.
+
+Recursion is a common mathematical and programming concept. It means that a function calls itself. This has the benefit of meaning that you can loop through data to reach a result.
+
+The developer should be very careful with recursion as it can be quite easy to slip into writing a function which never terminates, or one that uses excess amounts of memory or processor power. However, when written correctly recursion can be a very efficient and mathematically-elegant approach to programming.
+
+In this example, `tri_recursion()` is a function that we have defined to call itself ("recurse"). We use the `k` variable as the data, which decrements `(-1)` every time we recurse. The recursion ends when the condition is not greater than `0` (i.e. when it is 0).
+
+To a new developer it can take some time to work out how exactly this works, best way to find out is by testing and modifying it.
+
+```python
+def tri_recursion(k):
+  if(k > 0):
+    result = k + tri_recursion(k - 1)
+    print(result)
+  else:
+    result = 0
+  return result
+
+print("\n\nRecursion Example Results")
+tri_recursion(6)
+```
+
+### Python Lambda
+
+A lambda function is a small anonymous function.
+
+**Syntax:**
+
+```python
+lambda arguments : expression
+```
+
+The expression is executed and the result is returned:
+
+Example:
+
+```python
+x = lambda a : a + 10
+print(x(5))
+```
+
+### Why Use Lambda Functions?
+
+The power of lambda is better shown when you use them as an anonymous function inside another function. Say you have a function definition that takes one argument, and that argument will be multiplied with an unknown number:
+
+```python
+def myfunc(n):
+  return lambda a : a * n
+```
+
+```python
+def myfunc(n):
+  return lambda a : a * n
+
+mydoubler = myfunc(2)
+
+print(mydoubler(11))
+```
+
+```python
+def myfunc(n):
+  return lambda a : a * n
+
+mydoubler = myfunc(2)
+mytripler = myfunc(3)
+
+print(mydoubler(11))
+print(mytripler(11))
 ```
